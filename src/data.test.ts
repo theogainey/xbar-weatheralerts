@@ -1,6 +1,5 @@
 import { LocData } from './types.d.ts';
-import sinon from "https://cdn.skypack.dev/sinon";
-import { assertEquals, assertRejects } from 'https://deno.land/std@0.128.0/testing/asserts.ts';
+import { assertEquals } from 'https://deno.land/std@0.128.0/testing/asserts.ts';
 import { fetchLocation } from './data.ts';
 Deno.test('fetchLocation returns only the needed data after successful request', async () => {
   const res = new TextEncoder().encode(JSON.stringify({
@@ -30,7 +29,6 @@ Deno.test('fetchLocation returns only the needed data after successful request',
 });
 
 Deno.test('fetchLocation handles errors with console.log', async () => {
-
   const globalFetchRef = globalThis.fetch;
   const globalConsoleLogRef = globalThis.console.log;
 
@@ -47,13 +45,11 @@ Deno.test('fetchLocation handles errors with console.log', async () => {
   }));
 
   globalThis.fetch = () => Promise.reject(new Response(res));
-  globalThis.console.log =  ():string => 'console.log handled error';
-  
+  globalThis.console.log = (): string => 'console.log handled error';
 
   const result = await fetchLocation();
   assertEquals(result, 'console.log handled error');
 
   globalThis.fetch = globalFetchRef;
-  globalThis.console.log = globalConsoleLogRef  
-
+  globalThis.console.log = globalConsoleLogRef;
 });
