@@ -8,7 +8,7 @@ const fetchWrapper = (url: string, dataHandler?: any, errorHandler?: any) => {
       const data = await res.json();
       return dataHandler ? dataHandler(data) : data;
     } catch (err) {
-      errorHandler ? errorHandler(err) : console.log(err);
+      return errorHandler ? errorHandler(err) : console.log(err);
     }
   };
 };
