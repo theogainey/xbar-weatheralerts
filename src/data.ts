@@ -1,10 +1,13 @@
 import { LocData } from './types.d.ts';
 
+// explicit-any ignored due to nature of dataHandler and errorHandler. will refactor in future
 /** fetchWrapper returns an instance of fetch wrapped for use with a single resource with def data and error handling */
 export const fetchWrapper = (
   { url, dataHandler, errorHandler }: {
     url: string;
+    //deno-lint-ignore no-explicit-any
     dataHandler?: any;
+    //deno-lint-ignore no-explicit-any
     errorHandler?: any;
   },
 ) => {
