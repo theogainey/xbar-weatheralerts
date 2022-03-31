@@ -1,7 +1,13 @@
 import { LocData } from './types.d.ts';
 
 /** fetchWrapper returns an instance of fetch wrapped for use with a single resource with def data and error handling */
-const fetchWrapper = (url: string, dataHandler?: any, errorHandler?: any) => {
+export const fetchWrapper = (
+  { url, dataHandler, errorHandler }: {
+    url: string;
+    dataHandler?: any;
+    errorHandler?: any;
+  },
+) => {
   return async () => {
     try {
       const res = await fetch(url);
@@ -26,6 +32,8 @@ const trimLocation = (
 
 /** fetchLocation returns an wrapped instance of fetch for calling location api */
 export const fetchLocation = fetchWrapper(
-  'http://ipinfo.io/json',
-  trimLocation,
+  {
+    url: 'http://ipinfo.io/json',
+    dataHandler: trimLocation,
+  },
 );
