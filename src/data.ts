@@ -1,27 +1,5 @@
 import { LocData } from './types.d.ts';
 
-// explicit-any ignored due to nature of dataHandler and errorHandler. will refactor in future
-/** fetchWrapper returns an instance of fetch wrapped for use with a single resource with def data and error handling */
-export const fetchWrapper = (
-  { url, dataHandler, errorHandler }: {
-    url: string;
-    //deno-lint-ignore no-explicit-any
-    dataHandler?: any;
-    //deno-lint-ignore no-explicit-any
-    errorHandler?: any;
-  },
-) => {
-  return async () => {
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      return dataHandler ? dataHandler(data) : data;
-    } catch (err) {
-      return errorHandler ? errorHandler(err) : console.log(err);
-    }
-  };
-};
-
 /** trimLocation returns only the needed data fields from larger location data object*/
 const trimLocation = (
   data: { city: string; region: string; loc: string },
@@ -29,14 +7,17 @@ const trimLocation = (
   return {
     city: data.city,
     region: data.region,
-    cordinates: data.loc,
+    coordinates: data.loc,
   };
 };
 
-/** fetchLocation returns an wrapped instance of fetch for calling location api */
-export const fetchLocation = fetchWrapper(
-  {
-    url: 'http://ipinfo.io/json',
-    dataHandler: trimLocation,
-  },
-);
+/**  wrapped instance of fetch for calling location api handles errors with console.log*/
+export const fetchLocation = async (): Promise<void | LocData> => {
+  try {
+    const res = await fetch('http://ipinfo.io/json');
+    const data = await res.json();
+    return trimLocation(data);
+  } catch (err) {
+    return console.log(err);
+  }
+};
