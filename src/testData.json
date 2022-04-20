@@ -1,0 +1,182 @@
+{
+  "@context": [
+    "https://geojson.org/geojson-ld/geojson-context.jsonld",
+    {
+      "@version": "1.1",
+      "wx": "https://api.weather.gov/ontology#",
+      "@vocab": "https://api.weather.gov/ontology#"
+    }
+  ],
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.97b84df43596ae8ce54ce94037b30059e4322002.001.1",
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.97b84df43596ae8ce54ce94037b30059e4322002.001.1",
+        "@type": "wx:Alert",
+        "id": "urn:oid:2.49.0.1.840.0.97b84df43596ae8ce54ce94037b30059e4322002.001.1",
+        "areaDesc": "Waters from Savannah GA to Altamaha Sound GA extending from 20 nm to 60 nm",
+        "geocode": {
+          "SAME": [
+            "075374"
+          ],
+          "UGC": [
+            "AMZ374"
+          ]
+        },
+        "affectedZones": [
+          "https://api.weather.gov/zones/forecast/AMZ374"
+        ],
+        "references": [
+          {
+            "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.504291e504f1fc24d74823e102aa45b7df1ee0fd.001.1",
+            "identifier": "urn:oid:2.49.0.1.840.0.504291e504f1fc24d74823e102aa45b7df1ee0fd.001.1",
+            "sender": "w-nws.webmaster@noaa.gov",
+            "sent": "2022-04-20T03:03:00-04:00"
+          },
+          {
+            "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.808da015230c0a2f44b309e1c3bc028b1aa22dcc.001.1",
+            "identifier": "urn:oid:2.49.0.1.840.0.808da015230c0a2f44b309e1c3bc028b1aa22dcc.001.1",
+            "sender": "w-nws.webmaster@noaa.gov",
+            "sent": "2022-04-20T06:40:00-04:00"
+          }
+        ],
+        "sent": "2022-04-20T10:43:00-04:00",
+        "effective": "2022-04-20T10:43:00-04:00",
+        "onset": "2022-04-20T10:43:00-04:00",
+        "expires": "2022-04-20T18:45:00-04:00",
+        "ends": "2022-04-21T08:00:00-04:00",
+        "status": "Actual",
+        "messageType": "Update",
+        "category": "Met",
+        "severity": "Minor",
+        "certainty": "Likely",
+        "urgency": "Expected",
+        "event": "Small Craft Advisory",
+        "sender": "w-nws.webmaster@noaa.gov",
+        "senderName": "NWS Charleston SC",
+        "headline": "Small Craft Advisory issued April 20 at 10:43AM EDT until April 21 at 8:00AM EDT by NWS Charleston SC",
+        "description": "* WHAT...East winds 15 to 20 kt with gusts up to 25 kt and seas\naround 5 ft.\n\n* WHERE...Savannah to Altamaha Sound from 20 to 60 NM.\n\n* WHEN...Until 8 AM EDT Thursday.\n\n* IMPACTS...Conditions will be hazardous to small craft.",
+        "instruction": "Inexperienced mariners, especially those operating smaller\nvessels, should avoid navigating in hazardous conditions.",
+        "response": "Avoid",
+        "parameters": {
+          "AWIPSidentifier": [
+            "MWWCHS"
+          ],
+          "WMOidentifier": [
+            "WHUS72 KCHS 201443"
+          ],
+          "NWSheadline": [
+            "SMALL CRAFT ADVISORY REMAINS IN EFFECT UNTIL 8 AM EDT THURSDAY"
+          ],
+          "BLOCKCHANNEL": [
+            "EAS",
+            "NWEM",
+            "CMAS"
+          ],
+          "VTEC": [
+            "/O.CON.KCHS.SC.Y.0039.000000T0000Z-220421T1200Z/"
+          ],
+          "eventEndingTime": [
+            "2022-04-21T12:00:00+00:00"
+          ],
+          "expiredReferences": [
+            "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.e1419d297a231a6ee4fe5767f6998e70bc132f0b.001.1,2021-05-15T19:33:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f09c62bf2900336f1a1b7be978d2c64174fb767d.001.1,2021-05-15T22:27:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.37ee178f51487c0ad6e033b87509436aec16dcde.001.1,2021-05-15T15:20:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.2cd26c2b39e2388e20a85d4d652491ca3ac806fd.001.1,2021-05-15T13:32:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c868e0142988b2b5558c28d4621fe13c3dc6e1ef.001.1,2021-05-15T06:45:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.b1a448fa233f78d6e7a6bd632c832d3b5f6d93b4.001.1,2021-05-15T02:50:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.23d0dbeb139b793d9ee77af161c9758f6570bab1.001.1,2021-05-14T22:56:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.6cdd364d7a817fb8657b8cd07dc548ed09ec3cb5.004.1,2021-05-14T19:49:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0ad857fcc3e9815b2cfa712af5958e65a36811db.001.1,2021-05-14T15:05:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.6cdd364d7a817fb8657b8cd07dc548ed09ec3cb5.001.1,2021-05-14T19:49:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.6cdd364d7a817fb8657b8cd07dc548ed09ec3cb5.003.1,2021-05-14T19:49:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.6cdd364d7a817fb8657b8cd07dc548ed09ec3cb5.002.1,2021-05-14T19:49:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9f693e767673c55b4ecf265283afb15698fe389a.004.1,2021-05-14T12:35:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0ad857fcc3e9815b2cfa712af5958e65a36811db.002.1,2021-05-14T15:05:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0ad857fcc3e9815b2cfa712af5958e65a36811db.003.1,2021-05-14T15:05:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0ad857fcc3e9815b2cfa712af5958e65a36811db.004.1,2021-05-14T15:05:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9f693e767673c55b4ecf265283afb15698fe389a.002.1,2021-05-14T12:35:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9f693e767673c55b4ecf265283afb15698fe389a.003.1,2021-05-14T12:35:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9f693e767673c55b4ecf265283afb15698fe389a.001.1,2021-05-14T12:35:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.84225312c75bd7cfd33d31c5b099d7b259a252f6.003.1,2021-05-14T09:36:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.84225312c75bd7cfd33d31c5b099d7b259a252f6.004.1,2021-05-14T09:36:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.84225312c75bd7cfd33d31c5b099d7b259a252f6.002.1,2021-05-14T09:36:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.84225312c75bd7cfd33d31c5b099d7b259a252f6.001.1,2021-05-14T09:36:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8e85bd15a327b2e6bbad0b844d8ff06c1aa6bb02.003.1,2021-05-14T06:46:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8e85bd15a327b2e6bbad0b844d8ff06c1aa6bb02.002.1,2021-05-14T06:46:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8e85bd15a327b2e6bbad0b844d8ff06c1aa6bb02.001.1,2021-05-14T06:46:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8e85bd15a327b2e6bbad0b844d8ff06c1aa6bb02.004.1,2021-05-14T06:46:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.a84d5742ae2fc8f566f697392dc9533a7f127040.004.1,2021-05-14T03:43:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.a84d5742ae2fc8f566f697392dc9533a7f127040.003.1,2021-05-14T03:43:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.a84d5742ae2fc8f566f697392dc9533a7f127040.002.1,2021-05-14T03:43:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.a84d5742ae2fc8f566f697392dc9533a7f127040.001.1,2021-05-14T03:43:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.86733ef09af453b5eedc75a1fef80791e7dc3e55.003.1,2021-05-13T22:38:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.86733ef09af453b5eedc75a1fef80791e7dc3e55.001.1,2021-05-13T22:38:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.86733ef09af453b5eedc75a1fef80791e7dc3e55.002.1,2021-05-13T22:38:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.86733ef09af453b5eedc75a1fef80791e7dc3e55.004.1,2021-05-13T22:38:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.1d41c04e225b6a73eb3b7c47c051e6ea4e331b7d.001.1,2021-05-13T19:10:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.1d41c04e225b6a73eb3b7c47c051e6ea4e331b7d.003.1,2021-05-13T19:10:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.1d41c04e225b6a73eb3b7c47c051e6ea4e331b7d.004.1,2021-05-13T19:10:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.1d41c04e225b6a73eb3b7c47c051e6ea4e331b7d.002.1,2021-05-13T19:10:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.15eab5f228830e9bccab2e28498cc3471d3337b6.001.1,2021-05-13T15:05:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.15eab5f228830e9bccab2e28498cc3471d3337b6.004.1,2021-05-13T15:05:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.15eab5f228830e9bccab2e28498cc3471d3337b6.002.1,2021-05-13T15:05:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.15eab5f228830e9bccab2e28498cc3471d3337b6.003.1,2021-05-13T15:05:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.cfaf83b0e46fd931fbc9e1055a3ea5de66d51ac7.001.1,2021-05-13T12:37:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.cfaf83b0e46fd931fbc9e1055a3ea5de66d51ac7.004.1,2021-05-13T12:37:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.cfaf83b0e46fd931fbc9e1055a3ea5de66d51ac7.003.1,2021-05-13T12:37:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.cfaf83b0e46fd931fbc9e1055a3ea5de66d51ac7.002.1,2021-05-13T12:37:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.562b0704c8e9abb0dcecf3cb6131ad37d56fa913.004.1,2021-05-13T09:40:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.562b0704c8e9abb0dcecf3cb6131ad37d56fa913.003.1,2021-05-13T09:40:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.562b0704c8e9abb0dcecf3cb6131ad37d56fa913.001.1,2021-05-13T09:40:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.562b0704c8e9abb0dcecf3cb6131ad37d56fa913.002.1,2021-05-13T09:40:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.86192dd866b78d5d9b0f9254ad9cf3754aefc8c4.003.1,2021-05-13T07:24:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.86192dd866b78d5d9b0f9254ad9cf3754aefc8c4.002.1,2021-05-13T07:24:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.86192dd866b78d5d9b0f9254ad9cf3754aefc8c4.001.1,2021-05-13T07:24:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.86192dd866b78d5d9b0f9254ad9cf3754aefc8c4.004.1,2021-05-13T07:24:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.77e52438ae2a06650cf76238d05869ac3431256b.004.1,2021-05-13T03:32:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.77e52438ae2a06650cf76238d05869ac3431256b.005.1,2021-05-13T03:32:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.77e52438ae2a06650cf76238d05869ac3431256b.003.1,2021-05-13T03:32:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.77e52438ae2a06650cf76238d05869ac3431256b.002.1,2021-05-13T03:32:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9738a3cb3e7f8ca6bddeb2e96c5c8d59780030af.001.1,2021-05-12T22:53:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9738a3cb3e7f8ca6bddeb2e96c5c8d59780030af.004.1,2021-05-12T22:53:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9738a3cb3e7f8ca6bddeb2e96c5c8d59780030af.005.1,2021-05-12T22:53:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9738a3cb3e7f8ca6bddeb2e96c5c8d59780030af.003.1,2021-05-12T22:53:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9738a3cb3e7f8ca6bddeb2e96c5c8d59780030af.002.1,2021-05-12T22:53:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.77e52438ae2a06650cf76238d05869ac3431256b.001.1,2021-05-13T03:32:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c91667539c9695f18066276d7f569e3e4abefcc5.002.1,2021-05-12T19:03:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c91667539c9695f18066276d7f569e3e4abefcc5.003.1,2021-05-12T19:03:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c91667539c9695f18066276d7f569e3e4abefcc5.004.1,2021-05-12T19:03:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c91667539c9695f18066276d7f569e3e4abefcc5.005.1,2021-05-12T19:03:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c91667539c9695f18066276d7f569e3e4abefcc5.001.1,2021-05-12T19:03:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9814147bf6049b1929de9100034d699924a65fc7.002.1,2021-05-12T15:02:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9814147bf6049b1929de9100034d699924a65fc7.005.1,2021-05-12T15:02:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9814147bf6049b1929de9100034d699924a65fc7.001.1,2021-05-12T15:02:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9814147bf6049b1929de9100034d699924a65fc7.003.1,2021-05-12T15:02:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9814147bf6049b1929de9100034d699924a65fc7.004.1,2021-05-12T15:02:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.ece4fa90c15bb41be074498e4499242925cef8fc.003.1,2021-05-12T13:04:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.ece4fa90c15bb41be074498e4499242925cef8fc.001.1,2021-05-12T13:04:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.ece4fa90c15bb41be074498e4499242925cef8fc.004.1,2021-05-12T13:04:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.ece4fa90c15bb41be074498e4499242925cef8fc.005.1,2021-05-12T13:04:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.ece4fa90c15bb41be074498e4499242925cef8fc.002.1,2021-05-12T13:04:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0432917447c3b25065e464948ad08d6b06f3fb31.001.1,2021-05-12T10:07:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0432917447c3b25065e464948ad08d6b06f3fb31.003.1,2021-05-12T10:07:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0432917447c3b25065e464948ad08d6b06f3fb31.004.1,2021-05-12T10:07:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0432917447c3b25065e464948ad08d6b06f3fb31.005.1,2021-05-12T10:07:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0432917447c3b25065e464948ad08d6b06f3fb31.002.1,2021-05-12T10:07:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3f7e12a03216b868eeaaf324373d6735dc3dad6c.004.1,2021-05-12T03:30:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3f7e12a03216b868eeaaf324373d6735dc3dad6c.005.1,2021-05-12T03:30:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3f7e12a03216b868eeaaf324373d6735dc3dad6c.001.1,2021-05-12T03:30:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3f7e12a03216b868eeaaf324373d6735dc3dad6c.002.1,2021-05-12T03:30:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3f7e12a03216b868eeaaf324373d6735dc3dad6c.003.1,2021-05-12T03:30:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.d79bbb71db9d9fa532381208d199b0b534d63ac3.001.1,2021-05-11T22:45:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.d79bbb71db9d9fa532381208d199b0b534d63ac3.003.1,2021-05-11T22:45:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.d79bbb71db9d9fa532381208d199b0b534d63ac3.002.1,2021-05-11T22:45:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.d79bbb71db9d9fa532381208d199b0b534d63ac3.004.1,2021-05-11T22:45:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.eb62fd88a52e27da18ffa425b533c7b4bf448d2b.001.1,2021-05-11T18:58:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.eb62fd88a52e27da18ffa425b533c7b4bf448d2b.002.1,2021-05-11T18:58:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.eb62fd88a52e27da18ffa425b533c7b4bf448d2b.004.1,2021-05-11T18:58:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.eb62fd88a52e27da18ffa425b533c7b4bf448d2b.003.1,2021-05-11T18:58:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c71efd46a5194f5cdd96fbf806ec96f0ae00a27e.003.1,2021-05-11T15:34:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c71efd46a5194f5cdd96fbf806ec96f0ae00a27e.001.1,2021-05-11T15:34:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c71efd46a5194f5cdd96fbf806ec96f0ae00a27e.002.1,2021-05-11T15:34:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c71efd46a5194f5cdd96fbf806ec96f0ae00a27e.004.1,2021-05-11T15:34:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.49404827ee5df8ba9b559ee5e827a0c2a735bd04.003.1,2021-05-11T03:21:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.49404827ee5df8ba9b559ee5e827a0c2a735bd04.001.1,2021-05-11T03:21:00-04:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.49404827ee5df8ba9b559ee5e827a0c2a735bd04.002.1,2021-05-11T03:21:00-04:00"
+          ]
+        }
+      }
+    },
+    {
+      "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.72ff8a6b155eabc48a0fd7d652acfb27c271b730.001.1",
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.72ff8a6b155eabc48a0fd7d652acfb27c271b730.001.1",
+        "@type": "wx:Alert",
+        "id": "urn:oid:2.49.0.1.840.0.72ff8a6b155eabc48a0fd7d652acfb27c271b730.001.1",
+        "areaDesc": "Duluth MN to Port Wing WI; Port Wing to Sand Island WI; Sand Island to Bayfield WI; Outer Apostle Islands Beyond 5 NM from Mainland",
+        "geocode": {
+          "SAME": [
+            "091145",
+            "091146",
+            "091147",
+            "091150"
+          ],
+          "UGC": [
+            "LSZ145",
+            "LSZ146",
+            "LSZ147",
+            "LSZ150"
+          ]
+        },
+        "affectedZones": [
+          "https://api.weather.gov/zones/forecast/LSZ145",
+          "https://api.weather.gov/zones/forecast/LSZ146",
+          "https://api.weather.gov/zones/forecast/LSZ147",
+          "https://api.weather.gov/zones/forecast/LSZ150"
+        ],
+        "references": [
+          {
+            "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.33bbd31298bb9a647cf69c593311c8484f61683c.001.1",
+            "identifier": "urn:oid:2.49.0.1.840.0.33bbd31298bb9a647cf69c593311c8484f61683c.001.1",
+            "sender": "w-nws.webmaster@noaa.gov",
+            "sent": "2022-04-19T22:18:00-05:00"
+          },
+          {
+            "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.327ebdf043d1ca7c22ee72010da99b4ff64b9802.001.1",
+            "identifier": "urn:oid:2.49.0.1.840.0.327ebdf043d1ca7c22ee72010da99b4ff64b9802.001.1",
+            "sender": "w-nws.webmaster@noaa.gov",
+            "sent": "2022-04-20T02:52:00-05:00"
+          }
+        ],
+        "sent": "2022-04-20T09:38:00-05:00",
+        "effective": "2022-04-20T09:38:00-05:00",
+        "onset": "2022-04-20T09:38:00-05:00",
+        "expires": "2022-04-20T16:00:00-05:00",
+        "ends": "2022-04-20T16:00:00-05:00",
+        "status": "Actual",
+        "messageType": "Update",
+        "category": "Met",
+        "severity": "Minor",
+        "certainty": "Likely",
+        "urgency": "Expected",
+        "event": "Small Craft Advisory",
+        "sender": "w-nws.webmaster@noaa.gov",
+        "senderName": "NWS Duluth MN",
+        "headline": "Small Craft Advisory issued April 20 at 9:38AM CDT until April 20 at 4:00PM CDT by NWS Duluth MN",
+        "description": "* WHAT...East winds 10 to 15 kt with gusts up to 25 kts and waves\n1 to 3 ft.\n\n* WHERE...Port Wing to Sand Island WI, Sand Island to Bayfield\nWI, Duluth MN to Port Wing WI and Outer Apostle Islands Beyond\n5 NM from Mainland.\n\n* WHEN...Until 4 PM CDT this afternoon.\n\n* IMPACTS...Conditions will be hazardous to small craft.",
+        "instruction": "Anyone operating a smaller vessel should avoid navigating in\nhazardous conditions.",
+        "response": "Avoid",
+        "parameters": {
+          "AWIPSidentifier": [
+            "MWWDLH"
+          ],
+          "WMOidentifier": [
+            "WHUS73 KDLH 201438"
+          ],
+          "NWSheadline": [
+            "SMALL CRAFT ADVISORY REMAINS IN EFFECT UNTIL 4 PM CDT THIS AFTERNOON"
+          ],
+          "BLOCKCHANNEL": [
+            "EAS",
+            "NWEM",
+            "CMAS"
+          ],
+          "VTEC": [
+            "/O.CON.KDLH.SC.Y.0055.000000T0000Z-220420T2100Z/"
+          ],
+          "eventEndingTime": [
+            "2022-04-20T21:00:00+00:00"
+          ],
+          "expiredReferences": [
+            "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.7c023e56249d0eac0c0ceac186a37176b0051ab3.001.1,2022-04-19T15:31:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.ac0191b25bdd6e4e159dae329c9367f19f56995d.002.1,2021-08-24T15:52:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.ac0191b25bdd6e4e159dae329c9367f19f56995d.001.1,2021-08-24T15:52:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3959c02fd2c38eb2074803c16d4053fc5be7e89e.001.1,2021-08-24T13:40:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.bf088e4d6b439308b4aea76b1abac6c5277788f8.001.1,2021-08-24T21:15:00-05:00"
+          ]
+        }
+      }
+    }
+  ],
+  "title": "current watches, warnings, and advisories",
+  "updated": "2022-04-20T14:45:51+00:00"
+}
