@@ -56,3 +56,4 @@ bitbar
 TypeScript
 runtime
 Homebrew
+shebang

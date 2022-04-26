@@ -40,3 +40,9 @@ and [releases](https://github.com/denoland/deno/releases) for other options.
 To install this plugin move the source code from this repository into the xbar
 plugin directory. The plugin directory is folder on your Mac where the plugins
 live, located at `~/Library/Application Support/xbar/plugins.`
+
+In the shebang at the top of the file change `/path/to/the/deno/executable` to
+the correct path the deno executable on your local machine.
+
+Ensure that the file is executable by using the command `chmod +x filename.ts`.
+[Read more.](https://github.com/matryer/xbar#installing-plugins)
