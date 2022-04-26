@@ -4,10 +4,12 @@ export type LocData = {
   coordinates: string;
 };
 
+export type Severity = 'Minor' | 'Moderate' | 'Severe' | 'Unknown';
+
 export type WeatherAlert = {
   areaDesc: string;
   event: string;
-  severity: string;
+  severity: Severity;
   status: string;
   headline: string;
   description: string;
