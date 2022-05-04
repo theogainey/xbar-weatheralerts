@@ -70,10 +70,6 @@ Deno.test('fetchNWS returns trimmed Weather Alert Data ', async () => {
 
   const expected: WeatherAlert[] = [
     {
-      areaDesc:
-        'Waters from Savannah GA to Altamaha Sound GA extending from 20 nm to 60 nm',
-      effective: '2022-04-20T10:43:00-04:00',
-      ends: '2022-04-21T08:00:00-04:00',
       status: 'Actual',
       severity: 'Minor',
       event: 'Small Craft Advisory',
@@ -85,10 +81,6 @@ Deno.test('fetchNWS returns trimmed Weather Alert Data ', async () => {
         'Inexperienced mariners, especially those operating smaller\nvessels, should avoid navigating in hazardous conditions.',
     },
     {
-      areaDesc:
-        'Duluth MN to Port Wing WI; Port Wing to Sand Island WI; Sand Island to Bayfield WI; Outer Apostle Islands Beyond 5 NM from Mainland',
-      effective: '2022-04-20T09:38:00-05:00',
-      ends: '2022-04-20T16:00:00-05:00',
       status: 'Actual',
       severity: 'Minor',
       event: 'Small Craft Advisory',

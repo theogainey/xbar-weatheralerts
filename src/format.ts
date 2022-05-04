@@ -5,11 +5,15 @@ import {
 } from 'https://raw.githubusercontent.com/theogainey/functional-javascript-utility-functions/main/index.js';
 import { Severity, WeatherAlert } from './types.d.ts';
 
+const removeLineBreaks = (text: string) =>
+  text ? text.replace(/\n/g, ' ') : ' ';
+
 // color logic
 const severityColors: Record<Severity, string> = {
   Minor: 'white',
   Moderate: 'yellow',
   Severe: 'red',
+  Extreme: 'purple',
   Unknown: 'white',
 };
 const getColorValue = (event: WeatherAlert) => severityColors[event.severity];
@@ -38,13 +42,21 @@ const weatherAlertDetailsToXbarMenuItem = (alert: WeatherAlert) => ({
     },
     separator,
     {
-      text: alert.instruction,
+      text: removeLineBreaks(alert.description),
+      size: 16,
+      color: 'navy',
+      wordWrap: 40,
+    },
+    separator,
+    {
+      text: removeLineBreaks(alert.instruction),
       size: 16,
       color: 'navy',
       wordWrap: 40,
     },
   ],
 });
+
 const getFormattedWeatherAlertDetails = (data: WeatherAlert[]) =>
   data.map(weatherAlertDetailsToXbarMenuItem);
 

@@ -11,14 +11,11 @@ const trimLocation = (
 
 /** trimAlertData returns only the needed data fields from larger location data object*/
 const trimAlertData = (alert: { properties: WeatherAlert }): WeatherAlert => ({
-  areaDesc: alert.properties.areaDesc,
   event: alert.properties.event,
   severity: alert.properties.severity,
   status: alert.properties.status,
   headline: alert.properties.headline,
   description: alert.properties.description,
-  effective: alert.properties.effective,
-  ends: alert.properties.ends,
   instruction: alert.properties.instruction,
 });
 

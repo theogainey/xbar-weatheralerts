@@ -4,14 +4,11 @@ import { weatherAlertsToXbarFormat } from './format.ts';
 
 Deno.test('weatherAlertsToXbarFormat returns an array with  { text: weather alert event } in the 0 index ', () => {
   const input: WeatherAlert[] = [{
-    areaDesc: 'string',
     event: 'weather alert event',
     severity: 'Severe',
     status: 'Actual',
     headline: 'string',
     description: 'string',
-    effective: 'string',
-    ends: 'string',
     instruction: 'string',
   }];
   const actual = weatherAlertsToXbarFormat(input);
@@ -21,14 +18,11 @@ Deno.test('weatherAlertsToXbarFormat returns an array with  { text: weather aler
 
 Deno.test('weatherAlertsToXbarFormat formats objects color field to match severity', () => {
   const input: WeatherAlert[] = [{
-    areaDesc: 'string',
     event: 'weather alert event',
     severity: 'Severe',
     status: 'Actual',
     headline: 'string',
     description: 'string',
-    effective: 'string',
-    ends: 'string',
     instruction: 'string',
   }];
   const actual = weatherAlertsToXbarFormat(input);
