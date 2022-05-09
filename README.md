@@ -37,9 +37,13 @@ and [releases](https://github.com/denoland/deno/releases) for other options.
 
 ### Install this plugin
 
-To install this plugin move the source code from this repository into the xbar
-plugin directory. The plugin directory is folder on your Mac where the plugins
-live, located at `~/Library/Application Support/xbar/plugins.`
+To install this plugin copy the contents of `weatherAlerts.10min.ts` into your
+xbar plugin directory. The plugin directory is folder on your Mac where the
+plugins live, located at `~/Library/Application Support/xbar/plugins.`
+
+```
+curl -sL https://raw.githubusercontent.com/theogainey/xbar-weatheralerts/weatherAlerts.10min.ts -o weatherAlerts.ts
+```
 
 In the shebang at the top of the file change `/path/to/the/deno/executable` to
 the correct path the deno executable on your local machine.
