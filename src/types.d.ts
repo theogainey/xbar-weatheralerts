@@ -14,3 +14,15 @@ export type WeatherAlert = {
   description: string;
   instruction: string;
 };
+
+export type Forecast = {
+  temperature: number;
+  unit: string;
+  shortForecast: string;
+};
+
+export type WeatherData = {
+  location: LocData;
+  alerts: WeatherAlert[];
+  forecast: Forecast;
+};

@@ -1,9 +1,9 @@
-import { WeatherAlert } from './types.d.ts';
+import { WeatherAlert, WeatherData } from './types.d.ts';
 import { assertEquals } from 'https://deno.land/std@0.128.0/testing/asserts.ts';
-import { weatherAlertsToXbarFormat } from './format.ts';
+import { formatForXbar } from './format.ts';
 
 Deno.test('weatherAlertsToXbarFormat returns an array with  { text: weather alert event } in the 0 index ', () => {
-  const input: WeatherAlert[] = [{
+  const alerts: WeatherAlert[] = [{
     event: 'weather alert event',
     severity: 'Severe',
     status: 'Actual',
@@ -11,13 +11,27 @@ Deno.test('weatherAlertsToXbarFormat returns an array with  { text: weather aler
     description: 'string',
     instruction: 'string',
   }];
-  const actual = weatherAlertsToXbarFormat(input);
+
+  const input: WeatherData = {
+    location: {
+      city: 'city',
+      region: 'region',
+      coordinates: 'string',
+    },
+    alerts: alerts,
+    forecast: {
+      temperature: 20,
+      unit: 'F',
+      shortForecast: 'string',
+    },
+  };
+  const actual = formatForXbar(input);
   const expected = 'weather alert event';
-  assertEquals(actual[0].text, expected);
+  assertEquals(actual[2].text, expected);
 });
 
 Deno.test('weatherAlertsToXbarFormat formats objects color field to match severity', () => {
-  const input: WeatherAlert[] = [{
+  const alerts: WeatherAlert[] = [{
     event: 'weather alert event',
     severity: 'Severe',
     status: 'Actual',
@@ -25,13 +39,21 @@ Deno.test('weatherAlertsToXbarFormat formats objects color field to match severi
     description: 'string',
     instruction: 'string',
   }];
-  const actual = weatherAlertsToXbarFormat(input);
-  const expected = 'red';
-  assertEquals(actual[0].color, expected);
-});
-Deno.test('weatherAlertsToXbarFormat returns an array containing only a seperator when it is passed no weather Alerts', () => {
-  const input: WeatherAlert[] = [];
-  const actual = weatherAlertsToXbarFormat(input);
-  const expected = [{ text: '---' }];
-  assertEquals(actual, expected);
+
+  const input: WeatherData = {
+    location: {
+      city: 'city',
+      region: 'region',
+      coordinates: 'string',
+    },
+    alerts: alerts,
+    forecast: {
+      temperature: 20,
+      unit: 'F',
+      shortForecast: 'string',
+    },
+  };
+  const actual = formatForXbar(input);
+  const expected = 'darkred';
+  assertEquals(actual[2].color, expected);
 });

@@ -1,4 +1,4 @@
-import { LocData, WeatherAlert } from './types.d.ts';
+import { Forecast, LocData, WeatherAlert, WeatherData } from './types.d.ts';
 
 /** trimLocation returns only the needed data fields from larger location data object*/
 const trimLocation = (
@@ -40,3 +40,44 @@ export const fetchNWS = async (
   const nwsData = await res.json();
   return extractAlerts(nwsData);
 };
+
+const trimForcast = (
+  forcast: {
+    temperature: number;
+    temperatureUnit: string;
+    shortForecast: string;
+  },
+): Forecast => ({
+  temperature: forcast.temperature,
+  unit: forcast.temperatureUnit,
+  shortForecast: forcast.shortForecast,
+});
+const getNearestForcast = (
+  data: {
+    properties: {
+      periods: {
+        temperature: number;
+        temperatureUnit: string;
+        shortForecast: string;
+      }[];
+    };
+  },
+) => trimForcast(data.properties.periods[0]);
+
+const fetchForecast = async (location: LocData) => {
+  const res1 = await fetch(
+    `https://api.weather.gov/points/${location.coordinates}`,
+  );
+  const data1 = await res1.json();
+  const res2 = await fetch(`${data1.properties.forecastHourly}`);
+  const forcastData = await res2.json();
+  return getNearestForcast(forcastData);
+};
+
+export const fetchWeatherData = (loc: LocData): Promise<WeatherData> =>
+  Promise.all([fetchNWS(loc), fetchForecast(loc)])
+    .then((values) => ({
+      location: loc,
+      alerts: values[0],
+      forecast: values[1],
+    }));
