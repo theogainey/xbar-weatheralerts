@@ -1,2 +1,2 @@
-export { fetchLocation, fetchNWS } from './data.ts';
+export { fetchLocation, fetchWeatherData } from './data.ts';
 export { formatForXbar } from './format.ts';
