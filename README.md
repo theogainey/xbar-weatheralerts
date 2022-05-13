@@ -42,11 +42,11 @@ xbar plugin directory. The plugin directory is folder on your Mac where the
 plugins live, located at `~/Library/Application Support/xbar/plugins.`
 
 ```
-curl -sL https://raw.githubusercontent.com/theogainey/xbar-weatheralerts/weatherAlerts.10min.ts -o weatherAlerts.ts
+curl -sL https://raw.githubusercontent.com/theogainey/xbar-weatheralerts/weatherAlerts.10min.ts -o weatherAlerts.10min.ts
 ```
 
 In the shebang at the top of the file change `/path/to/the/deno/executable` to
 the correct path the deno executable on your local machine.
 
-Ensure that the file is executable by using the command `chmod +x filename.ts`.
+Ensure that the file is executable by using the command `chmod +x weatherAlerts.10min.ts`.
 [Read more.](https://github.com/matryer/xbar#installing-plugins)
