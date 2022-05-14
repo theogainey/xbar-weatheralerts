@@ -57,3 +57,4 @@ TypeScript
 runtime
 Homebrew
 shebang
+NWS
