@@ -2,7 +2,7 @@ import { separator } from 'https://deno.land/x/xbar@v0.3.0/mod.ts';
 import {
   pipe,
   pipeCompatibleFilter,
-} from 'https://raw.githubusercontent.com/theogainey/functional-javascript-utility-functions/main/index.js';
+} from 'https://raw.githubusercontent.com/theogainey/functional-javascript-utility-functions/main/index.ts';
 import { Severity, WeatherAlert, WeatherData } from './types.d.ts';
 
 const removeLineBreaks = (text: string) =>
