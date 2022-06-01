@@ -1,11 +1,11 @@
-#!/usr/bin/env -S ${HOME}/.deno/bin/deno run --allow-net 
+#!/usr/bin/env -S -P/${HOME}/.deno/bin:/opt/homebrew/bin deno run --allow-net
 /*
 *  <xbar.title>NWS Weather and Alerts</xbar.title>
 *  <xbar.version>v1.0</xbar.version>
 *  <xbar.author>Theo Gainey</xbar.author>
 *  <xbar.author.github>theogainey</xbar.author.github>
 *  <xbar.desc>Weather and Severe Weather Alerts powered by The National Weather Service API</xbar.desc>
-*  <xbar.image>https://github.com/theogainey/xbar-weatheralerts/blob/main/example.png</xbar.image>
+*  <xbar.image>https://www.theogainey.com/example.png</xbar.image>
 *  <xbar.dependencies>deno</xbar.dependencies>
 *  <xbar.abouturl>https://github.com/theogainey/xbar-weatheralerts</xbar.abouturl>
 */
