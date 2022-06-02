@@ -13,7 +13,7 @@ const severityColors: Record<Severity, string> = {
   Moderate: 'yellow',
   Severe: 'red',
   Extreme: 'purple',
-  Unknown: 'white',
+  Unknown: 'black',
 };
 
 const severityRankings: Record<Severity, number> = {
@@ -25,13 +25,12 @@ const severityRankings: Record<Severity, number> = {
 };
 
 // color logic
+const isDefaultColor = (color: string) => color === 'black';
 const getColorValue = (event: WeatherAlert) => severityColors[event.severity];
-const replaceWhite = (color: string) => color === 'white' ? 'black' : color;
 const replaceRed = (color: string) => color === 'red' ? 'darkred' : color;
 const getAlternateColorValue = (event: WeatherAlert) =>
   pipe(
     getColorValue,
-    replaceWhite,
     replaceRed,
   )(event);
 
@@ -83,22 +82,37 @@ const alertSeveritesToArray = (data: WeatherData) =>
 const sortAlertSeverities = (arr: Severity[]) =>
   arr.sort((a, b) => severityRankings[b] - severityRankings[a]);
 const getMostSevereColor = (arr: Severity[]) =>
-  severityColors[arr[0]] ?? 'white';
-const getTemperatureColor = (data: WeatherData) =>
+  severityColors[arr[0]] ?? 'black';
+
+const removeColorIfDefault = (
+  { text, color }: { text: string; color: string },
+) => (
+  isDefaultColor(color) ? { text: text } : {
+    text: text,
+    color: color,
+  }
+);
+
+// formatTempeature
+const formatTemperature = (data: WeatherData) =>
+  (color: string) => ({
+    text:
+      `${data.location.city}, ${data.location.region} ${data.forecast.temperature}°${data.forecast.unit}`,
+    color: color,
+  });
+//getFormattedTemperature
+const getFormattedTemperature = (data: WeatherData) =>
   pipe(
     alertSeveritesToArray,
     sortAlertSeverities,
     getMostSevereColor,
+    formatTemperature(data),
+    removeColorIfDefault,
+    //formatTemperature(data)
   )(data);
 
 const getFormattedWeatherAlerts = (data: WeatherData) =>
   data.alerts.map(weatherAlertToXbarMenuItem);
-
-const getFormattedTemperature = (data: WeatherData) => ({
-  text:
-    `${data.location.city}, ${data.location.region} ${data.forecast.temperature}°${data.forecast.unit}`,
-  color: getTemperatureColor(data),
-});
 
 // entry point for formatting filtered alerts
 const filteredDataToXbarFormat = (data: WeatherData) => [
