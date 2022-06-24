@@ -1,4 +1,11 @@
-import { Forecast, LocData, WeatherAlert, WeatherData } from './types.d.ts';
+import {
+  Forecast,
+  LocData,
+  Place,
+  WeatherAlert,
+  WeatherData,
+} from './types.d.ts';
+import { getZip } from './settings.ts';
 
 /** trimLocation returns only the needed data fields from larger location data object*/
 const trimLocation = (
@@ -23,11 +30,29 @@ const extractAlerts = (
   data: { features: [{ properties: WeatherAlert }] },
 ): WeatherAlert[] => data.features.map((alert) => trimAlertData(alert));
 
+const toLocData = (place: Place) => ({
+  city: place['place name'],
+  region: place['state'],
+  coordinates: `${place['latitude']},${place['longitude']}`,
+});
+
+const useZIPCode = async (zip: string): Promise<LocData> => {
+  const res = await fetch(`https://api.zippopotam.us/us/${zip}`);
+  const data = await res.json();
+  return toLocData(data.places[0]);
+};
+
 /**  wrapped instance of fetch for calling location api*/
 export const fetchLocation = async (): Promise<LocData> => {
-  const res = await fetch('http://ipinfo.io/json');
-  const data = await res.json();
-  return trimLocation(data);
+  const zip = await getZip();
+  if (zip) {
+    const data = await useZIPCode(zip);
+    return data;
+  } else {
+    const res = await fetch('http://ipinfo.io/json');
+    const data = await res.json();
+    return trimLocation(data);
+  }
 };
 
 /**  wrapped instance of fetch for calling NWS api*/

@@ -26,3 +26,15 @@ export type WeatherData = {
   alerts: WeatherAlert[];
   forecast: Forecast;
 };
+
+export type Settings = {
+  VAR_USEZIP: boolean | null | undefined;
+  VAR_ZIP: string | null | undefined;
+};
+
+export type Place = {
+  'place name': string;
+  longitude: string;
+  latitude: string;
+  state: string;
+};

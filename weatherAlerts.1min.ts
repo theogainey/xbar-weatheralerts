@@ -1,4 +1,4 @@
-#!/usr/bin/env -S -P/${HOME}/.deno/bin:/opt/homebrew/bin deno run --allow-net
+#!/usr/bin/env -S -P/${HOME}/.deno/bin:/opt/homebrew/bin deno run --allow-net --allow-read=alerts.1min.ts.vars.json
 /*
 *  <xbar.title>NWS Weather and Alerts</xbar.title>
 *  <xbar.version>v1.0</xbar.version>
