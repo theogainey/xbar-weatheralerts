@@ -2,7 +2,7 @@ import { WeatherAlert, WeatherData } from './types.d.ts';
 import { assertEquals } from 'https://deno.land/std@0.128.0/testing/asserts.ts';
 import { formatForXbar } from './format.ts';
 
-Deno.test('weatherAlertsToXbarFormat returns an array with  { text: weather alert event } in the 0 index ', () => {
+Deno.test('weatherAlertsToXbarFormat returns an array with  { text: weather alert event } in the 0 index ', async () => {
   const alerts: WeatherAlert[] = [{
     event: 'weather alert event',
     severity: 'Severe',
@@ -25,12 +25,12 @@ Deno.test('weatherAlertsToXbarFormat returns an array with  { text: weather aler
       shortForecast: 'string',
     },
   };
-  const actual = formatForXbar(input);
+  const actual = await formatForXbar(input);
   const expected = 'weather alert event';
   assertEquals(actual[2].text, expected);
 });
 
-Deno.test('weatherAlertsToXbarFormat formats objects color field to match severity', () => {
+Deno.test('weatherAlertsToXbarFormat formats objects color field to match severity', async () => {
   const alerts: WeatherAlert[] = [{
     event: 'weather alert event',
     severity: 'Severe',
@@ -53,7 +53,7 @@ Deno.test('weatherAlertsToXbarFormat formats objects color field to match severi
       shortForecast: 'string',
     },
   };
-  const actual = formatForXbar(input);
+  const actual = await formatForXbar(input);
   const expected = 'darkred';
   assertEquals(actual[2].color, expected);
 });

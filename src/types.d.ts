@@ -30,6 +30,18 @@ export type WeatherData = {
 export type Settings = {
   VAR_USEZIP: boolean | null | undefined;
   VAR_ZIP: string | null | undefined;
+  VAR_Minor_Color: string | null | undefined;
+  VAR_Moderate_Color: string | null | undefined;
+  VAR_Severe_Color: string | null | undefined;
+  VAR_Extreme_Color: string | null | undefined;
+};
+
+export type ColorScheme = {
+  Minor: string;
+  Moderate: string;
+  Severe: string;
+  Extreme: string;
+  Unknown: string;
 };
 
 export type Place = {

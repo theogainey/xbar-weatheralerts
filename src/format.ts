@@ -3,18 +3,11 @@ import {
   pipe,
   pipeCompatibleFilter,
 } from 'https://raw.githubusercontent.com/theogainey/functional-javascript-utility-functions/main/index.ts';
-import { Severity, WeatherAlert, WeatherData } from './types.d.ts';
+import { ColorScheme, Severity, WeatherAlert, WeatherData } from './types.d.ts';
+import { getCustomColorScheme } from './settings.ts';
 
 const removeLineBreaks = (text: string) =>
   text ? text.replace(/\n/g, ' ') : ' ';
-
-const severityColors: Record<Severity, string> = {
-  Minor: 'white',
-  Moderate: 'yellow',
-  Severe: 'red',
-  Extreme: 'purple',
-  Unknown: 'black',
-};
 
 const severityRankings: Record<Severity, number> = {
   Unknown: 0,
@@ -26,13 +19,15 @@ const severityRankings: Record<Severity, number> = {
 
 // color logic
 const isDefaultColor = (color: string) => color === 'black';
-const getColorValue = (event: WeatherAlert) => severityColors[event.severity];
+const getColorValue = (colorscheme: ColorScheme) =>
+  (event: WeatherAlert) => colorscheme[event.severity];
 const replaceRed = (color: string) => color === 'red' ? 'darkred' : color;
-const getAlternateColorValue = (event: WeatherAlert) =>
-  pipe(
-    getColorValue,
-    replaceRed,
-  )(event);
+const getAlternateColorValue = (colorscheme: ColorScheme) =>
+  (event: WeatherAlert) =>
+    pipe(
+      getColorValue(colorscheme),
+      replaceRed,
+    )(event);
 
 // filter test alerts logic
 const isNotTestAlert = (event: WeatherAlert) => event.status === 'Actual';
@@ -43,46 +38,48 @@ const filterTestAlerts = (data: WeatherData) => ({
 });
 
 // get and format weather alert event logic
-const weatherAlertEventToXbarMenuItem = (alert: WeatherAlert) => ({
-  text: alert.event,
-  color: getAlternateColorValue(alert),
-  size: 20,
-});
+const weatherAlertEventToXbarMenuItem = (colorscheme: ColorScheme) =>
+  (alert: WeatherAlert) => ({
+    text: alert.event,
+    color: getAlternateColorValue(colorscheme)(alert),
+    size: 20,
+  });
 
 // get and format weather alert details logic
-const weatherAlertToXbarMenuItem = (alert: WeatherAlert) => ({
-  ...weatherAlertEventToXbarMenuItem(alert),
-  submenu: [
-    {
-      text: alert.headline,
-      size: 16,
-      color: 'navy',
-      wordWrap: 40,
-    },
-    separator,
-    {
-      text: removeLineBreaks(alert.description),
-      size: 16,
-      color: 'navy',
-      wordWrap: 40,
-    },
-    separator,
-    {
-      text: removeLineBreaks(alert.instruction),
-      size: 16,
-      color: 'navy',
-      wordWrap: 40,
-    },
-  ],
-});
+const weatherAlertToXbarMenuItem = (colorscheme: ColorScheme) =>
+  (alert: WeatherAlert) => ({
+    ...weatherAlertEventToXbarMenuItem(colorscheme)(alert),
+    submenu: [
+      {
+        text: alert.headline,
+        size: 16,
+        color: 'navy',
+        wordWrap: 40,
+      },
+      separator,
+      {
+        text: removeLineBreaks(alert.description),
+        size: 16,
+        color: 'navy',
+        wordWrap: 40,
+      },
+      separator,
+      {
+        text: removeLineBreaks(alert.instruction),
+        size: 16,
+        color: 'navy',
+        wordWrap: 40,
+      },
+    ],
+  });
 
 // logic so that temperature color is based on most severe weather alert
 const alertSeveritesToArray = (data: WeatherData) =>
   data.alerts.map((alert) => alert.severity);
 const sortAlertSeverities = (arr: Severity[]) =>
   arr.sort((a, b) => severityRankings[b] - severityRankings[a]);
-const getMostSevereColor = (arr: Severity[]) =>
-  severityColors[arr[0]] ?? 'black';
+const getMostSevereColor = (colorscheme: ColorScheme) =>
+  (arr: Severity[]) => colorscheme[arr[0]] ?? 'black';
 
 const removeColorIfDefault = (
   { text, color }: { text: string; color: string },
@@ -101,29 +98,33 @@ const formatTemperature = (data: WeatherData) =>
     color: color,
   });
 //getFormattedTemperature
-const getFormattedTemperature = (data: WeatherData) =>
-  pipe(
-    alertSeveritesToArray,
-    sortAlertSeverities,
-    getMostSevereColor,
-    formatTemperature(data),
-    removeColorIfDefault,
-    //formatTemperature(data)
-  )(data);
+const getFormattedTemperature = (colorscheme: ColorScheme) =>
+  (data: WeatherData) =>
+    pipe(
+      alertSeveritesToArray,
+      sortAlertSeverities,
+      getMostSevereColor(colorscheme),
+      formatTemperature(data),
+      removeColorIfDefault,
+    )(data);
 
-const getFormattedWeatherAlerts = (data: WeatherData) =>
-  data.alerts.map(weatherAlertToXbarMenuItem);
+const getFormattedWeatherAlerts = (colorscheme: ColorScheme) =>
+  (data: WeatherData) =>
+    data.alerts.map(weatherAlertToXbarMenuItem(colorscheme));
 
 // entry point for formatting filtered alerts
-const filteredDataToXbarFormat = (data: WeatherData) => [
-  getFormattedTemperature(data),
-  separator,
-  ...getFormattedWeatherAlerts(data),
-];
+const filteredDataToXbarFormat = (colorscheme: ColorScheme) =>
+  (data: WeatherData) => [
+    getFormattedTemperature(colorscheme)(data),
+    separator,
+    ...getFormattedWeatherAlerts(colorscheme)(data),
+  ];
 
 // entry point
-export const formatForXbar = (data: WeatherData) =>
-  pipe(
+export const formatForXbar = async (data: WeatherData) => {
+  const colorscheme: ColorScheme = await getCustomColorScheme();
+  return pipe(
     filterTestAlerts,
-    filteredDataToXbarFormat,
+    filteredDataToXbarFormat(colorscheme),
   )(data);
+};

@@ -8,6 +8,12 @@
 *  <xbar.image>https://www.theogainey.com/example.png</xbar.image>
 *  <xbar.dependencies>deno</xbar.dependencies>
 *  <xbar.abouturl>https://github.com/theogainey/xbar-weatheralerts</xbar.abouturl>
+*  <xbar.var>string(VAR_ZIP=""): Enter Zip code for improved accuracy</xbar.var>
+*  <xbar.var>boolean(VAR_USEZIP=true): Weather to use Zip code for location or not</xbar.var>
+*  <xbar.var>string(VAR_Minor_Color=""): Enter 6 digit hex color to change display color of minor weather alerts</xbar.var>
+*  <xbar.var>string(VAR_Moderate_Color=""): Enter 6 digit hex color to change display color of moderate weather alerts</xbar.var>
+*  <xbar.var>string(VAR_Severe_Color=""): Enter 6 digit hex color to change display color of severe weather alerts</xbar.var>
+*  <xbar.var>string(VAR_Extreme_Color=""): Enter 6 digit hex color to change display color of extreme weather alerts</xbar.var>
 */
 
 import { separator, xbar } from 'https://deno.land/x/xbar@v2.0.0/mod.ts';
