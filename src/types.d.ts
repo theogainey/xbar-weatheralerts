@@ -16,7 +16,7 @@ export type WeatherAlert = {
 };
 
 export type Forecast = {
-  temperature: number;
+  temperature: number | string;
   unit: string;
   shortForecast: string;
 };
@@ -34,6 +34,10 @@ export type Settings = {
   VAR_Moderate_Color: string | null | undefined;
   VAR_Severe_Color: string | null | undefined;
   VAR_Extreme_Color: string | null | undefined;
+  LastCity: string | null | undefined;
+  LastRegion: string | null | undefined;
+  LastCoordinates: string | null | undefined;
+  LastAlerts: WeatherAlert[] | null | undefined;
 };
 
 export type ColorScheme = {

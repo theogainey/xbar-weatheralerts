@@ -74,7 +74,7 @@ const weatherAlertToXbarMenuItem = (colorscheme: ColorScheme) =>
   });
 
 // logic so that temperature color is based on most severe weather alert
-const alertSeveritesToArray = (data: WeatherData) =>
+const alertSeveritiesToArray = (data: WeatherData) =>
   data.alerts.map((alert) => alert.severity);
 const sortAlertSeverities = (arr: Severity[]) =>
   arr.sort((a, b) => severityRankings[b] - severityRankings[a]);
@@ -90,18 +90,17 @@ const removeColorIfDefault = (
   }
 );
 
-// formatTempeature
 const formatTemperature = (data: WeatherData) =>
   (color: string) => ({
     text:
-      `${data.location.city}, ${data.location.region} ${data.forecast.temperature}°${data.forecast.unit}`,
+      `${data.location.city}, ${data.location.region} ${data.forecast.temperature}${data.forecast.unit}`,
     color: color,
   });
 //getFormattedTemperature
 const getFormattedTemperature = (colorscheme: ColorScheme) =>
   (data: WeatherData) =>
     pipe(
-      alertSeveritesToArray,
+      alertSeveritiesToArray,
       sortAlertSeverities,
       getMostSevereColor(colorscheme),
       formatTemperature(data),

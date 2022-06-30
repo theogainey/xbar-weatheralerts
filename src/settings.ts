@@ -1,4 +1,4 @@
-import { ColorScheme, Settings } from './types.d.ts';
+import { ColorScheme, LocData, Settings, WeatherAlert } from './types.d.ts';
 
 const hasOnlyDigits = (zip: string) =>
   zip.split('').every((digit) => !isNaN(parseInt(digit)));
@@ -9,7 +9,7 @@ export const hasValidZip = (config: Settings): boolean =>
 export const getZip = async () => {
   try {
     const config = JSON.parse(
-      await Deno.readTextFile('./alerts.1min.ts.vars.json'),
+      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
     );
     if (!(config && hasValidZip(config) && config['VAR_USEZIP'])) {
       return '';
@@ -45,7 +45,7 @@ const getCustomColors = (config: Settings): ColorScheme => ({
 export const getCustomColorScheme = async () => {
   try {
     const config = JSON.parse(
-      await Deno.readTextFile('./alerts.1min.ts.vars.json'),
+      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
     );
     return getCustomColors(config);
   } catch {
@@ -56,5 +56,92 @@ export const getCustomColorScheme = async () => {
       Extreme: 'purple',
       Unknown: 'black',
     };
+  }
+};
+
+const isValidCoordinates = (coordinates: string | null | undefined) =>
+  typeof coordinates === 'string' &&
+  coordinates.trim().split(',').every((e) => e.length === 8 || e.length === 7);
+
+const extractLocation = (config: Settings) => ({
+  city: config['LastCity'] ?? '',
+  region: config['LastRegion'] ?? '',
+  coordinates: isValidCoordinates(config['LastCoordinates'])
+    ? config['LastCoordinates'] ?? ''
+    : '',
+});
+export const getLastLocation = async () => {
+  try {
+    const config = JSON.parse(
+      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
+    );
+    return extractLocation(config);
+  } catch {
+    return {
+      city: '',
+      region: '',
+      coordinates: '',
+    };
+  }
+};
+
+export const getLastAlerts = async (): Promise<WeatherAlert[]> => {
+  try {
+    const config = JSON.parse(
+      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
+    );
+    if (config && config['lastAlerts']) {
+      return config['lastAlerts'];
+    } else {
+      return [];
+    }
+  } catch {
+    return [];
+  }
+};
+
+export const writeLocation = async (location: LocData): Promise<void> => {
+  try {
+    const config = JSON.parse(
+      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
+    );
+    Deno.writeTextFile(
+      './weatherAlerts.1min.ts.vars.json',
+      JSON.stringify(
+        {
+          ...config,
+          LastCity: location.city,
+          LastRegion: location.region,
+          LastCoordinates: location.coordinates,
+        },
+        null,
+        2,
+      ),
+    );
+  } catch {
+    return;
+  }
+};
+
+export const writeAlerts = async (
+  alerts: WeatherAlert[] = [],
+): Promise<void> => {
+  try {
+    const config = JSON.parse(
+      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
+    );
+    Deno.writeTextFile(
+      './weatherAlerts.1min.ts.vars.json',
+      JSON.stringify(
+        {
+          ...config,
+          lastAlerts: alerts,
+        },
+        null,
+        2,
+      ),
+    );
+  } catch {
+    return;
   }
 };

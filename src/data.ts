@@ -5,7 +5,13 @@ import {
   WeatherAlert,
   WeatherData,
 } from './types.d.ts';
-import { getZip } from './settings.ts';
+import {
+  getLastAlerts,
+  getLastLocation,
+  getZip,
+  writeAlerts,
+  writeLocation,
+} from './settings.ts';
 
 /** trimLocation returns only the needed data fields from larger location data object*/
 const trimLocation = (
@@ -44,14 +50,22 @@ const useZIPCode = async (zip: string): Promise<LocData> => {
 
 /**  wrapped instance of fetch for calling location api*/
 export const fetchLocation = async (): Promise<LocData> => {
-  const zip = await getZip();
-  if (zip) {
-    const data = await useZIPCode(zip);
-    return data;
-  } else {
-    const res = await fetch('http://ipinfo.io/json');
-    const data = await res.json();
-    return trimLocation(data);
+  try {
+    const zip = await getZip();
+    if (zip) {
+      const data = await useZIPCode(zip);
+      // write data
+      writeLocation(data);
+      return data;
+    } else {
+      const res = await fetch('http://ipinfo.io/json');
+      const data = trimLocation(await res.json());
+      // write data
+      writeLocation(data);
+      return data;
+    }
+  } catch {
+    return await getLastLocation();
   }
 };
 
@@ -59,25 +73,30 @@ export const fetchLocation = async (): Promise<LocData> => {
 export const fetchNWS = async (
   data: LocData,
 ): Promise<WeatherAlert[]> => {
-  const res = await fetch(
-    `https://api.weather.gov/alerts/active?point=${data.coordinates}`,
-  );
-  const nwsData = await res.json();
-  return extractAlerts(nwsData);
+  try {
+    const res = await fetch(
+      `https://api.weather.gov/alerts/active?point=${data.coordinates}`,
+    );
+    const nwsData = extractAlerts(await res.json());
+    writeAlerts(nwsData);
+    return nwsData;
+  } catch {
+    return await getLastAlerts();
+  }
 };
 
-const trimForcast = (
-  forcast: {
+const trimForecast = (
+  forecast: {
     temperature: number;
     temperatureUnit: string;
     shortForecast: string;
   },
 ): Forecast => ({
-  temperature: forcast.temperature,
-  unit: forcast.temperatureUnit,
-  shortForecast: forcast.shortForecast,
+  temperature: forecast.temperature,
+  unit: `°${forecast.temperatureUnit}`,
+  shortForecast: forecast.shortForecast,
 });
-const getNearestForcast = (
+const getNearestForecast = (
   data: {
     properties: {
       periods: {
@@ -87,16 +106,24 @@ const getNearestForcast = (
       }[];
     };
   },
-) => trimForcast(data.properties.periods[0]);
+) => trimForecast(data.properties.periods[0]);
 
 const fetchForecast = async (location: LocData) => {
-  const res1 = await fetch(
-    `https://api.weather.gov/points/${location.coordinates}`,
-  );
-  const data1 = await res1.json();
-  const res2 = await fetch(`${data1.properties.forecastHourly}`);
-  const forcastData = await res2.json();
-  return getNearestForcast(forcastData);
+  try {
+    const res1 = await fetch(
+      `https://api.weather.gov/points/${location.coordinates}`,
+    );
+    const data1 = await res1.json();
+    const res2 = await fetch(`${data1.properties.forecastHourly}`);
+    const forecastData = await res2.json();
+    return getNearestForecast(forecastData);
+  } catch {
+    return {
+      temperature: '',
+      unit: '',
+      shortForecast: '',
+    };
+  }
 };
 
 export const fetchWeatherData = (loc: LocData): Promise<WeatherData> =>

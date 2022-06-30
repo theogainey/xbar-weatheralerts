@@ -14,6 +14,10 @@ Deno.test('hasValidZip returns false for non string values', () => {
     VAR_Moderate_Color: null,
     VAR_Severe_Color: null,
     VAR_Extreme_Color: null,
+    LastCity: null,
+    LastRegion: null,
+    LastCoordinates: null,
+    LastAlerts: null,
   };
   assert(!hasValidZip(caseA));
 
@@ -24,6 +28,10 @@ Deno.test('hasValidZip returns false for non string values', () => {
     VAR_Moderate_Color: null,
     VAR_Severe_Color: null,
     VAR_Extreme_Color: null,
+    LastCity: null,
+    LastRegion: null,
+    LastCoordinates: null,
+    LastAlerts: null,
   };
   assert(!hasValidZip(caseB));
 });
@@ -36,6 +44,10 @@ Deno.test('hasValidZip returns false for string values less than 5 digits in in 
     VAR_Moderate_Color: null,
     VAR_Severe_Color: null,
     VAR_Extreme_Color: null,
+    LastCity: null,
+    LastRegion: null,
+    LastCoordinates: null,
+    LastAlerts: null,
   };
   assert(!hasValidZip(testCase));
 });
@@ -48,6 +60,10 @@ Deno.test('hasValidZip returns false for  string values that contain non numeric
     VAR_Moderate_Color: null,
     VAR_Severe_Color: null,
     VAR_Extreme_Color: null,
+    LastCity: null,
+    LastRegion: null,
+    LastCoordinates: null,
+    LastAlerts: null,
   };
   assert(!hasValidZip(testCase));
 });
@@ -60,6 +76,10 @@ Deno.test('hasValidZip returns true for for a 5 digit string', () => {
     VAR_Moderate_Color: null,
     VAR_Severe_Color: null,
     VAR_Extreme_Color: null,
+    LastCity: null,
+    LastRegion: null,
+    LastCoordinates: null,
+    LastAlerts: null,
   };
   assert(hasValidZip(testCase));
 });
@@ -73,6 +93,10 @@ Deno.test('getZip returns a 5 digit string', async () => {
       VAR_Moderate_Color: null,
       VAR_Severe_Color: null,
       VAR_Extreme_Color: null,
+      LastCity: null,
+      LastRegion: null,
+      LastCoordinates: null,
+      LastAlerts: null,
     });
   const actual = await getZip();
   assertEquals(actual, '12345');
@@ -87,6 +111,10 @@ Deno.test('getZip returns empty string if no valid zip code is in config', async
       VAR_Moderate_Color: null,
       VAR_Severe_Color: null,
       VAR_Extreme_Color: null,
+      LastCity: null,
+      LastRegion: null,
+      LastCoordinates: null,
+      LastAlerts: null,
     });
 
   const actual = await getZip();
@@ -116,6 +144,10 @@ Deno.test('getCustomColorScheme returns default color scheme if no custom color 
       VAR_Moderate_Color: null,
       VAR_Severe_Color: null,
       VAR_Extreme_Color: null,
+      LastCity: null,
+      LastRegion: null,
+      LastCoordinates: null,
+      LastAlerts: null,
     });
   const actual = await getCustomColorScheme();
   assertEquals(actual, {
@@ -151,6 +183,10 @@ Deno.test('getCustomColorScheme returns modified color scheme if valid color var
       VAR_Moderate_Color: null,
       VAR_Severe_Color: null,
       VAR_Extreme_Color: null,
+      LastCity: null,
+      LastRegion: null,
+      LastCoordinates: null,
+      LastAlerts: null,
     });
   const actual = await getCustomColorScheme();
   assertEquals(actual, {
@@ -172,6 +208,10 @@ Deno.test('getCustomColorScheme returns default color if color variable in confi
       VAR_Moderate_Color: null,
       VAR_Severe_Color: null,
       VAR_Extreme_Color: null,
+      LastCity: null,
+      LastRegion: null,
+      LastCoordinates: null,
+      LastAlerts: null,
     });
   const actual = await getCustomColorScheme();
   assertEquals(actual, {
