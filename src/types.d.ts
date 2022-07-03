@@ -39,6 +39,12 @@ export type Settings = {
   LastCoordinates: string | null | undefined;
   LastAlerts: WeatherAlert[] | null | undefined;
 };
+export interface WritableValues {
+  LastCity?: string;
+  LastRegion?: string;
+  LastCoordinates?: string;
+  lastAlerts?: WeatherAlert[];
+}
 
 export type ColorScheme = {
   Minor: string;

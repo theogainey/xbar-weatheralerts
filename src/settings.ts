@@ -1,4 +1,10 @@
-import { ColorScheme, LocData, Settings, WeatherAlert } from './types.d.ts';
+import {
+  ColorScheme,
+  LocData,
+  Settings,
+  WeatherAlert,
+  WritableValues,
+} from './types.d.ts';
 
 const hasOnlyDigits = (zip: string) =>
   zip.split('').every((digit) => !isNaN(parseInt(digit)));
@@ -6,11 +12,22 @@ export const hasValidZip = (config: Settings): boolean =>
   typeof config['VAR_ZIP'] === 'string' &&
   config['VAR_ZIP'].length === 5 && hasOnlyDigits(config['VAR_ZIP']);
 
+const getConfig = async () => {
+  for await (const dirEntry of Deno.readDir(Deno.cwd())) {
+    if (
+      dirEntry.name.slice(0, 13) === 'weatherAlerts' &&
+      dirEntry.name.slice(-9) === 'vars.json'
+    ) {
+      return JSON.parse(
+        await Deno.readTextFile(`./${dirEntry.name}`),
+      );
+    }
+  }
+};
+
 export const getZip = async () => {
   try {
-    const config = JSON.parse(
-      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
-    );
+    const config = await getConfig();
     if (!(config && hasValidZip(config) && config['VAR_USEZIP'])) {
       return '';
     }
@@ -44,9 +61,7 @@ const getCustomColors = (config: Settings): ColorScheme => ({
 
 export const getCustomColorScheme = async () => {
   try {
-    const config = JSON.parse(
-      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
-    );
+    const config = await getConfig();
     return getCustomColors(config);
   } catch {
     return {
@@ -72,9 +87,7 @@ const extractLocation = (config: Settings) => ({
 });
 export const getLastLocation = async () => {
   try {
-    const config = JSON.parse(
-      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
-    );
+    const config = await getConfig();
     return extractLocation(config);
   } catch {
     return {
@@ -87,9 +100,7 @@ export const getLastLocation = async () => {
 
 export const getLastAlerts = async (): Promise<WeatherAlert[]> => {
   try {
-    const config = JSON.parse(
-      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
-    );
+    const config = await getConfig();
     if (config && config['lastAlerts']) {
       return config['lastAlerts'];
     } else {
@@ -100,24 +111,34 @@ export const getLastAlerts = async (): Promise<WeatherAlert[]> => {
   }
 };
 
+const writeConfig = (config: Settings, values: WritableValues) => {
+  for (const dirEntry of Deno.readDirSync(Deno.cwd())) {
+    if (
+      dirEntry.name.slice(0, 6) === 'weatherAlerts' &&
+      dirEntry.name.slice(-9) == 'vars.json'
+    ) {
+      Deno.writeTextFile(
+        `./${dirEntry.name}`,
+        JSON.stringify(
+          {
+            ...config,
+            ...values,
+          },
+          null,
+          2,
+        ),
+      );
+    }
+  }
+};
 export const writeLocation = async (location: LocData): Promise<void> => {
   try {
-    const config = JSON.parse(
-      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
-    );
-    Deno.writeTextFile(
-      './weatherAlerts.1min.ts.vars.json',
-      JSON.stringify(
-        {
-          ...config,
-          LastCity: location.city,
-          LastRegion: location.region,
-          LastCoordinates: location.coordinates,
-        },
-        null,
-        2,
-      ),
-    );
+    const config = await getConfig();
+    writeConfig(config, {
+      LastCity: location.city,
+      LastRegion: location.region,
+      LastCoordinates: location.coordinates,
+    });
   } catch {
     return;
   }
@@ -127,20 +148,10 @@ export const writeAlerts = async (
   alerts: WeatherAlert[] = [],
 ): Promise<void> => {
   try {
-    const config = JSON.parse(
-      await Deno.readTextFile('./weatherAlerts.1min.ts.vars.json'),
-    );
-    Deno.writeTextFile(
-      './weatherAlerts.1min.ts.vars.json',
-      JSON.stringify(
-        {
-          ...config,
-          lastAlerts: alerts,
-        },
-        null,
-        2,
-      ),
-    );
+    const config = await getConfig();
+    writeConfig(config, {
+      lastAlerts: alerts,
+    });
   } catch {
     return;
   }
